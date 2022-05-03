@@ -15,7 +15,7 @@ const filmsPresenter = new FilmsPresenter();
 render(new ProfileView(), haderElement);
 render(new FilterView(), mainElement);
 render(new SortView(), mainElement);
-render(new PopupView(), bodyElement);
+//render(new PopupView(), bodyElement);
 
 filmsPresenter.init(mainElement);
 filmsPresenter.init2();
