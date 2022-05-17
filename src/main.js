@@ -5,18 +5,19 @@ import FilterView from './view/filter-view.js';
 import SortView from './view/sort-view.js';
 import PopupView from './view/popup-view.js';
 import FilmsPresenter from './presenter/films-list-presenter.js';
-
+import FilmsModel from './model/films-model.js';
 
 const haderElement = document.querySelector('.header');
 const mainElement = document.querySelector('.main');
 const bodyElement = document.querySelector('body');
 const filmsPresenter = new FilmsPresenter();
+const filmsModel = new FilmsModel();
 
 render(new ProfileView(), haderElement);
 render(new FilterView(), mainElement);
 render(new SortView(), mainElement);
 render(new PopupView(), bodyElement);
 
-filmsPresenter.init(mainElement);
+filmsPresenter.init(mainElement, filmsModel);
 
 
