@@ -11,37 +11,29 @@ export default class FilmsPresenter {
   filmsComponent = new FilmsContainer();
   filmsListComponent = new FilmslistView();
   filmsListContainerComponent = new FilmslistContainerView();
-  filmsListComponentExtra = new FilmslistView();
-  filmsListContainerExtraComponent = new FilmslistContainerView();
 
-
-  renderMainFilmsContainer = (filmsContainer) => {
+  renderMainFilmsContainer = (filmsContainer, filmsModel) => {
     this.filmsContainer = filmsContainer;
+    this.filmsModel = filmsModel;
+    this.films = [...this.filmsModel.getFilms()];
+
     render(this.filmsComponent, this.filmsContainer);
     render(this.filmsListComponent, this.filmsComponent.getElement());
     render(this.filmsListContainerComponent, this.filmsListComponent.getElement());
 
-    for (let i = 0; i < 5; i++) {
-      render(new FilmCardView(), this.filmsListContainerComponent.getElement());
-    }
+    /*for (let i = 0; i < this.films.length; i++) {
+      render(new FilmCardView(this.films[i]), this.filmsListContainerComponent.getElement());
+    }*/
+
+    this.films.forEach((film) => {
+      render(new FilmCardView(film), this.filmsListContainerComponent.getElement());
+    });
 
     render(new ShowMoreButtonView(), this.filmsListComponent.getElement());
   };
 
-  renderExtraFilmsContainer = () => {
-    render(this.filmsListComponentExtra, this.filmsComponent.getElement());
-    render(this.filmsListContainerExtraComponent, this.filmsListComponentExtra.getElement());
-
-    this.filmsListComponentExtra.element.classList.add('films-list--extra');// уберу в следующей домашке
-
-    for (let i = 0; i < 2; i++) {
-      render(new FilmCardView(), this.filmsListContainerExtraComponent.getElement());
-    }
-  };
-
-  init = (filmsContainer) => {
-    this.renderMainFilmsContainer(filmsContainer);
-    this.renderExtraFilmsContainer();
+  init = (filmsContainer, filmsModel) => {
+    this.renderMainFilmsContainer(filmsContainer, filmsModel);
   };
 }
 
