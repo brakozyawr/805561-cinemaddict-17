@@ -37,13 +37,7 @@ const generateGenre = () => {
     'Comedy'
   ];
   const genres = getArrayRandomElements(genre);
-  //или это во вью перенести?
-  const fragment = new DocumentFragment();
-  genres.forEach((element) => {
-    const g = `<span class="film-details__genre">${element}</span>`;
-    fragment.append(g);
-  });
-  return fragment.textContent;
+  return genres;
 };
 
 const generateEmotion = () => {
@@ -59,9 +53,17 @@ const generateEmotion = () => {
   return emotion[randomIndex];
 };
 
-export const generateComment = (i) => ({
+/*export const generateComment = (i) => ({
   id: i,
   author: `Ilya O'Reilly-${  i}`,
+  comment: generateDescription(),
+  date: '2019-05-11T16:12:32.554Z',
+  emotion: generateEmotion()
+});*/
+
+export const generateComment = () => ({
+  id: getRandomInteger(1, 20),
+  author: `Ilya O'Reilly-${getRandomInteger(1, 20)}`,
   comment: generateDescription(),
   date: '2019-05-11T16:12:32.554Z',
   emotion: generateEmotion()

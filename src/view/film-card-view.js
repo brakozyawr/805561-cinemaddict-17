@@ -20,6 +20,15 @@ const createFilmCardTemplate = (filmCard) => {
   const humanizedDate = date !== null
     ? humanizeDate(date, template)
     : '';
+
+  //или это во вью перенести?
+  const fragment = new DocumentFragment();
+  genre.forEach((element) => {
+    const g = `<span class="film-details__genre">${element}</span>`;
+    fragment.append(g);
+  });
+  const genres = fragment.textContent;
+
   return (
     `<article class="film-card">
       <a class="film-card__link">
@@ -28,7 +37,7 @@ const createFilmCardTemplate = (filmCard) => {
         <p class="film-card__info">
           <span class="film-card__year">${humanizedDate}</span>
           <span class="film-card__duration">${runtime}</span>
-          <span class="film-card__genre">${genre}</span>
+          <span class="film-card__genre">${genres}</span>
         </p>
         <img src="./${poster}" alt="" class="film-card__poster">
         <p class="film-card__description">${description}</p>

@@ -21,9 +21,13 @@ export default class FilmsPresenter {
     render(this.filmsListComponent, this.filmsComponent.getElement());
     render(this.filmsListContainerComponent, this.filmsListComponent.getElement());
 
-    for (let i = 0; i < this.films.length; i++) {
+    /*for (let i = 0; i < this.films.length; i++) {
       render(new FilmCardView(this.films[i]), this.filmsListContainerComponent.getElement());
-    }
+    }*/
+
+    this.films.forEach((film) => {
+      render(new FilmCardView(film), this.filmsListContainerComponent.getElement());
+    });
 
     render(new ShowMoreButtonView(), this.filmsListComponent.getElement());
   };
